@@ -5,6 +5,7 @@ require 'Api.php';
 class MetodoPago extends Api {
 
   public $table_name = "Metodo_pago";
+  public $coulumna_id = "idMetodo_pago";
 
   public function __construct() {
       parent::__construct();

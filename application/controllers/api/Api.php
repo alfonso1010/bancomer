@@ -20,7 +20,7 @@ class Api extends REST_Controller {
       $data = $this->get();
       $where = "";
       if($id > 0){
-        $where = "where id = $id";
+        $where = "where ".$this->coulumna_id." = $id";
       }
       $registros = (isset($data['registros']))?$data['registros']:10;
       $pagina = (isset($data['pagina']))?$data['pagina']:1;
@@ -82,7 +82,7 @@ class Api extends REST_Controller {
       if($id > 0){
         $datos = $this->generico->modificarRegistros([
                     'tabla' => $this->table_name,
-                    'columna' => 'id',
+                    'columna' => $this->coulumna_id,
                     'valor'  => $id,
                     'datos' => $data
                   ]);
@@ -99,7 +99,7 @@ class Api extends REST_Controller {
       if ($id > 0) {
         $datos =  $this->generico->eliminarRegistros([
                     'tabla' => $this->table_name,
-                    'columna' => $this->columna_delete,
+                    'columna' => $this->coulumna_id,
                     'valor'  => $id,
                   ]);
         if($datos){

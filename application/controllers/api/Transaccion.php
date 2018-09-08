@@ -2,10 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require 'Api.php';
 
-class TipoCuenta extends Api {
+class Transaccion extends Api {
 
-  public $table_name = "Tipo_cuenta";
-  public $coulumna_id = "idTipo_cuenta";
+  public $table_name = "Transaccion";
+  public $coulumna_id = "idTransaccion";
 
   public function __construct() {
       parent::__construct();
