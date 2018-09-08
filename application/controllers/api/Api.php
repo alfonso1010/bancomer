@@ -13,9 +13,6 @@ class Api extends REST_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->model('generico' , 'generico');
-        $this->config->load($this->name_rules);
-        $this->load->library('form_validation');
-        $this->load->helper('form');
         
     }
 

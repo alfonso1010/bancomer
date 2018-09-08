@@ -74,12 +74,12 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'mysql:host=localhost;dbname=tumejoreleccion',
+	'dsn'	=> 'mysql:host=localhost;dbname=bancomer',
 	'hostname' => 'localhost',
 
 	'username' => 'root',
 	'password' => 'root',
-	'database' => 'tumejoreleccion',
+	'database' => 'bancomer',
 
 	//'username' => 'tumejoreleccion',
 	//'password' => '7h8j9k0l',
