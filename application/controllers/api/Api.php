@@ -25,7 +25,6 @@ class Api extends REST_Controller {
       $registros = (isset($data['registros']))?$data['registros']:10;
       $pagina = (isset($data['pagina']))?$data['pagina']:1;
       $filtros = (isset($data['filtros']))?$data['filtros']:"";
-      $where = "";
       if(isset($this->search) && $this->search != "" ){
         $where .= $this->search;
       }
