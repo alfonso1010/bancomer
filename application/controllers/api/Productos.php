@@ -4,7 +4,8 @@ require 'Api.php';
 
 class Productos extends Api {
 
-  public $table_name = "productos";
+  public $table_name = "Productos";
+  public $coulumna_id = "idProductos";
 
   public function __construct() {
       parent::__construct();
