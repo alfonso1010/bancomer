@@ -13,6 +13,8 @@ class Api extends REST_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->model('generico' , 'generico');
+        //$CI = get_instance();
+        //$this->otherDb = $CI->load->database('BPCMRCIO',TRUE);
         
     }
 
@@ -66,7 +68,7 @@ class Api extends REST_Controller {
       if (is_null($datos) | $datos < 1) {
         $datos = 0;
       }
-      $this->response($datos, 200);
+      $this->response(['error' => false,'msg' => "Registro guardado con éxito"], 200);
     }
 
     public function index_put($id = 0){
@@ -86,9 +88,10 @@ class Api extends REST_Controller {
                     'datos' => $data
                   ]);
         if($datos){
-          $this->response((int)$id, 200);
+
+          $this->response(['error' => false,'msg' => "Registro actualizado con éxito"], 200);
         }else{
-          $this->response(false, 401);
+          $this->response(['error' => true,'msg' => "Error al actualizar"], 401);
         }
       }
     }
