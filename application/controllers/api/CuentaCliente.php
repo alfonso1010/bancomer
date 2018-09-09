@@ -18,6 +18,12 @@ class CuentaCliente extends Api {
                       'join' => "join Cliente cl on cl.idCliente = cta.Cliente_idCliente",
                       'where' => "where cl.idCliente = ".$id
                     ]);
+  	$cuenta =  $this->generico->obtenerRegistros([
+                      'select' => '*',
+                      'from' => "Tipo_cuenta ",
+                      'where' => "where idTipo_cuenta=1"
+                    ]);
+  	//debug($cuenta);
   	$datos = [];
   	if(is_array($registros)){
   		foreach ($registros as $key => $value) {
@@ -26,7 +32,7 @@ class CuentaCliente extends Api {
   				'dOp' => [
   					'alias' => "",
   					'cl' => $value['numero_cuenta'],
-  					'type' => "CL",
+  					'type' => isset($cuenta[0]["desc_cuenta"])?$cuenta[0]["desc_cuenta"]:"TD",
   					'refn' => "",
   					'refa' => $value['nombre'],
   					'amount' => "",
