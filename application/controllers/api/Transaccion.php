@@ -21,7 +21,7 @@ class Transaccion extends Api {
 	          'hostname' => 'localhost',
 
 	          'username' => 'root',
-	          'password' => 'root',
+	          'password' => '7h8j9k0l!!abc',
 	          'database' => $nombreBd,
 
 	          //'username' => 'tumejoreleccion',
@@ -113,6 +113,7 @@ class Transaccion extends Api {
      	$data = $this->post();
      	$numeroReferencia = $data['numeroReferencia'];
      	$monto = $data['monto'];
+     	$token = $data['token'];
 
      	$nombreBd = $data['negocioBd'];
 	     $db1 = array(
@@ -120,7 +121,7 @@ class Transaccion extends Api {
 	          'hostname' => 'localhost',
 
 	          'username' => 'root',
-	          'password' => 'root',
+	          'password' => '7h8j9k0l!!abc',
 	          'database' => $nombreBd,
 
 	          //'username' => 'tumejoreleccion',
@@ -166,11 +167,11 @@ class Transaccion extends Api {
 
 			*/
 
-			$data['servicio'] = "sell?price=$monto&ref=$numero_referencia&token=$token";
+			$data['servicio'] = "sell?price=$monto&ref=$numeroReferencia&token=$token";
 			$data['metodo'] = METODO_GET;
 			$respuesta_push = consumir($data);
 
-			$data['servicio'] = "buy?price=$monto&ref=$numero_referencia&token=$token";
+			$data['servicio'] = "buy?price=$monto&ref=$numeroReferencia&token=$token";
 			$data['metodo'] = METODO_GET;
 			$respuesta_push = consumir($data);
 
