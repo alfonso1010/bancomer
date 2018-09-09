@@ -13,8 +13,40 @@ class Api extends REST_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->model('generico' , 'generico');
-        //$CI = get_instance();
-        //$this->otherDb = $CI->load->database('BPCMRCIO',TRUE);
+        $get = $this->get();
+        $nombreBd = "BPC";
+        if( isset($get['db']) ){
+          $nombreBd = $get['db'];
+        }
+        $db1 = array(
+          'dsn' => 'mysql:host=localhost;dbname='.$nombreBd,
+          'hostname' => 'localhost',
+
+          'username' => 'root',
+          'password' => 'root',
+          'database' => $nombreBd,
+
+          //'username' => 'tumejoreleccion',
+          //'password' => '7h8j9k0l',
+          //'database' => 'tumejoreleccion',
+          
+
+          'dbdriver' => 'pdo',
+          'dbprefix' => '',
+          'pconnect' => FALSE,
+          'db_debug' => (ENVIRONMENT !== 'production'),
+          'cache_on' => FALSE,
+          'cachedir' => '',
+          'char_set' => 'utf8',
+          'dbcollat' => 'utf8_general_ci',
+          'swap_pre' => '',
+          'encrypt' => FALSE,
+          'compress' => FALSE,
+          'stricton' => FALSE,
+          'failover' => array(),
+          'save_queries' => TRUE
+        );
+        $this->otherDb = $this->load->database($db1,true);
         
     }
 

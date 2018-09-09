@@ -20,7 +20,7 @@ function __construct() {
 		$limit = (isset($data['limit']))?$data['limit']:"";
 		$where = (isset($data['where']))?$data['where']:"";
 		$join = (isset($data['join']))?$data['join']:"";
-		$query = $this->db->query("
+		$query = $this->otherDb->query("
 			SELECT $select
 			FROM $from
 			$join
@@ -46,10 +46,10 @@ function __construct() {
 		$tipo = (isset($data['tipo']))?$data['tipo']:INSERT_NORMAL;
 
 		if($tipo == INSERT_NORMAL){
-			$this->db->insert($tabla, $datos);
-			$res =  $this->db->insert_id();
+			$this->otherDb->insert($tabla, $datos);
+			$res =  $this->otherDb->insert_id();
 		}else if($tipo == INSERT_BATCH){
-			$this->db->insert_batch($tabla, $datos);
+			$this->otherDb->insert_batch($tabla, $datos);
 			$res = true;
 		}
 		return (int)trim((string)$res,'\n');
@@ -70,8 +70,8 @@ function __construct() {
 		$valor = (isset($data['valor']))?$data['valor']:"";
 		$datos = (isset($data['datos']))?$data['datos']:array();
 
-		$this->db->where($columna, $valor);
-		return $this->db->update($tabla, $datos);
+		$this->otherDb->where($columna, $valor);
+		return $this->otherDb->update($tabla, $datos);
 	}
 
 	/**
@@ -86,8 +86,8 @@ function __construct() {
 		$columna = (isset($data['columna']))?$data['columna']:"";
 		$valor = (isset($data['valor']))?$data['valor']:"";
 
-		$this->db->where($columna, $valor);
-		return $this->db->delete($tabla);
+		$this->otherDb->where($columna, $valor);
+		return $this->otherDb->delete($tabla);
 	}
 }
 
