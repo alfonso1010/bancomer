@@ -14,8 +14,8 @@ class Transaccion extends Api {
 
   	public function index_post(){
      	$data = $this->post();
-     	 //$nombreBd = "BPCMRCIO";
-     	 $nombreBd = $data['negocioBd'];
+     	 $nombreBd = "BPCMRCIO";
+     	 //$nombreBd = $data['negocioBd'];
 	     $db1 = array(
 	          'dsn' => 'mysql:host=localhost;dbname='.$nombreBd,
 	          'hostname' => 'localhost',
@@ -79,16 +79,28 @@ class Transaccion extends Api {
 			$tipo_cobro = $negocio['TipoCobro_idTipoCobro'];
 			if($tipo_cobro == 1){
 
-				$query = $this->db->query("INSERT INTO `Transaccion` (`idTransaccion`, `fecha_trans`, `monto_trans`, `Estado_trans_idEstado_trans`, `Metodo_pago_idMetodo_pago`, `folio_referencia`, `Tipo_trans_idTipo_trans`, `cuenta`) VALUES (NULL,'$fecha', $monto,1, '1',$numero_referencia, '2',$cuentaCliente) , (NULL, '$fecha', $monto,1, '1', $numero_referencia, '1', $cuentaNegocio)");
+				/*$query = $this->db->query("INSERT INTO `Transaccion` (`idTransaccion`, `fecha_trans`, `monto_trans`, `Estado_trans_idEstado_trans`, `Metodo_pago_idMetodo_pago`, `folio_referencia`, `Tipo_trans_idTipo_trans`, `cuenta`) VALUES (NULL,'$fecha', $monto,1, '1',$numero_referencia, '2',$cuentaCliente) , (NULL, '$fecha', $monto,1, '1', $numero_referencia, '1', $cuentaNegocio)");
+				*/
 
-   			 	$data['servicio'] = "sell?price=$monto&ref=$numero_referencia&token=$token";
+   			 	$data['servicio'] = "sellAccept?price=$monto&ref=$numero_referencia&token=$token";
 				$data['metodo'] = METODO_GET;
-				//$respuesta_push = consumir($data);
-				debug($respuesta_push);
+				$respuesta_push = consumir($data);
 
 
 
 			} else if($tipo_cobro == 0){
+
+				$data['servicio'] = "sellAccept?price=$monto&ref=$numero_referencia&token=$token";
+				$data['metodo'] = METODO_GET;
+				$respuesta_push = consumir($data);
+
+				$data['servicio'] = "sell?price=$monto&ref=$numero_referencia&token=$token";
+				$data['metodo'] = METODO_GET;
+				$respuesta_push = consumir($data);
+
+				$data['servicio'] = "buy?price=$monto&ref=$numero_referencia&token=$token";
+				$data['metodo'] = METODO_GET;
+				$respuesta_push = consumir($data);
 
 			}
 		}
@@ -145,22 +157,23 @@ class Transaccion extends Api {
 		if(!is_null($negocio) && !empty($negocio)){
 			$negocio = $negocio[0];
 
+			/*
 			$query = $this->db->query("UPDATE `Transaccion` SET `Estado_trans_idEstado_trans`= 3
 			WHERE folio_referencia = '$numeroReferencia'");
 
 			$query = $this->db->query("CALL sp_update_retiro('$numeroReferencia')");
 			$query = $this->db->query("CALL sp_update_deposito('$numeroReferencia')");
 
-
+			*/
 
 			$data['servicio'] = "sell?price=$monto&ref=$numero_referencia&token=$token";
 			$data['metodo'] = METODO_GET;
-			//$respuesta_push = consumir($data);
-			debug($respuesta_push);
+			$respuesta_push = consumir($data);
 
+			$data['servicio'] = "buy?price=$monto&ref=$numero_referencia&token=$token";
+			$data['metodo'] = METODO_GET;
+			$respuesta_push = consumir($data);
 
-
-			
 		}
       
     	
