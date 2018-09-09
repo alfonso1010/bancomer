@@ -17,7 +17,7 @@ class CuentaNegocio extends Api {
                       'from' => "Negocio ",
                       'where' => "where idNegocio = ".$id
                     ]);
-  	//debug($cuenta);
+  	
   	$datos = [];
   	if(is_array($registros)){
   		foreach ($registros as $key => $value) {
@@ -25,7 +25,7 @@ class CuentaNegocio extends Api {
   				'ot' => "0001",
   				'dOp' => [
   					'alias' => "",
-  					'cl' => $value[0]['num_cuenta'],
+  					'cl' => $value['num_cuenta'],
   					'type' => isset($cuenta[0]["desc_cuenta"])?$cuenta[0]["desc_cuenta"]:"TD",
   					'refn' => "",
   					'refa' => $value['Nombre'],
