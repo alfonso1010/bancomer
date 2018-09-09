@@ -27,7 +27,7 @@ if ( ! function_exists('getUrlServicio'))
 {
     function getUrlServicio($servicio)
     {
-        return base_url()."index.php/api/".$servicio;
+        return "http://18.234.212.86:3000/push/".$servicio;
     }   
 }
 
